@@ -153,7 +153,7 @@ code.`,
 	pkgcmd.ConfigureNamespaceFlagCompletion(
 		cmd, []string{"namespace"},
 		kubeconfigPath, impersonate, impersonateGroup, kubeContext)
-	pkgcmd.ConfigureOutputFlagCompletion(cmd)
+	pkgcmd.ConfigureOutputFlagCompletion(cmd, []string{})
 
 	return cmd
 }

@@ -148,7 +148,8 @@ non-zero exit code.`,
 	cmd.AddCommand(newCmdCheckConfig(options))
 
 	pkgcmd.ConfigureNamespaceFlagCompletion(cmd, []string{"namespace"},
-	 kubeconfigPath, impersonate, impersonateGroup, kubeContext)
+		kubeconfigPath, impersonate, impersonateGroup, kubeContext)
+
 	return cmd
 }
 

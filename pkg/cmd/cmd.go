@@ -87,9 +87,12 @@ func ConfigureNamespaceFlagCompletion(
 	}
 }
 
-func ConfigureOutputFlagCompletion(cmd *cobra.Command) {
+func ConfigureOutputFlagCompletion(cmd *cobra.Command, output []string) {
 	cmd.RegisterFlagCompletionFunc("output",
 		func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+			if len(output) != 0 {
+				return output, cobra.ShellCompDirectiveDefault
+			}
 			return []string{"basic", "json"}, cobra.ShellCompDirectiveDefault
 		})
 }
