@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	pkgcmd "github.com/linkerd/linkerd2/pkg/cmd"
 	"github.com/linkerd/linkerd2/pkg/healthcheck"
 	"github.com/spf13/cobra"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -148,6 +149,11 @@ code.`,
 	cmd.Flags().StringP("namespace", "n", "", "Namespace to use for --proxy checks (default: all namespaces)")
 	cmd.Flags().MarkHidden("proxy")
 	cmd.Flags().MarkHidden("namespace")
+
+	pkgcmd.ConfigureNamespaceFlagCompletion(
+		cmd, []string{"namespace"},
+		kubeconfigPath, impersonate, impersonateGroup, kubeContext)
+	pkgcmd.ConfigureOutputFlagCompletion(cmd)
 
 	return cmd
 }

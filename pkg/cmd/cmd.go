@@ -75,7 +75,7 @@ func ConfigureNamespaceFlagCompletion(
 				if err != nil {
 					return nil, cobra.ShellCompDirectiveError
 				}
-				
+
 				cc := k8s.NewCommandCompletion(k8sAPI, "")
 				results, err := cc.Complete([]string{"namespaces"}, toComplete)
 				if err != nil {
@@ -85,4 +85,11 @@ func ConfigureNamespaceFlagCompletion(
 				return results, cobra.ShellCompDirectiveDefault
 			})
 	}
+}
+
+func ConfigureOutputFlagCompletion(cmd *cobra.Command) {
+	cmd.RegisterFlagCompletionFunc("output",
+		func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+			return []string{"basic", "json"}, cobra.ShellCompDirectiveDefault
+		})
 }
